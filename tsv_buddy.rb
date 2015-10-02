@@ -7,12 +7,25 @@ module TsvBuddy
   # take_tsv: converts a String with TSV data into @data
   # parameter: tsv - a String in TSV format
   def take_tsv(tsv)
-
+    @data  = []
+    lines  = tsv.split("\n")
+    keys   = lines[0].split("\t")
+    lines.shift
+    lines.each { |line| @data << keys.zip(line.split("\t")).to_h }
   end
 
   # to_tsv: converts @data into tsv string
   # returns: String in TSV format
   def to_tsv
-
+    tsv = ""
+    tsv << @data[0].keys.join("\t")+"\n"
+    @data.each { |d| tsv << d.values.join("\t")+"\n" }
+    return tsv
   end
 end
+
+#class Tester
+    #include TsvBuddy
+#end
+
+#t = Tester.new.take_tsv(File.read('./data/survey.tsv'))
