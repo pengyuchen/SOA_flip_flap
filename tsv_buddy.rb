@@ -17,15 +17,9 @@ module TsvBuddy
   # to_tsv: converts @data into tsv string
   # returns: String in TSV format
   def to_tsv
-    tsv = ""
-    tsv << @data[0].keys.join("\t")+"\n"
-    @data.each { |d| tsv << d.values.join("\t")+"\n" }
-    return tsv
+    tsv = ''
+    tsv << @data[0].keys.join("\t") + "\n"
+    @data.each { |d| tsv << d.values.join("\t") + "\n" }
+    tsv
   end
 end
-
-#class Tester
-    #include TsvBuddy
-#end
-
-#t = Tester.new.take_tsv(File.read('./data/survey.tsv'))
